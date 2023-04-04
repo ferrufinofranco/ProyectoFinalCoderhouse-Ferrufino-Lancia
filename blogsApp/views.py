@@ -11,4 +11,3 @@ from django.contrib.auth.hashers import make_password
 
 def home(request):
     return render(request, "base/base.html")
-
