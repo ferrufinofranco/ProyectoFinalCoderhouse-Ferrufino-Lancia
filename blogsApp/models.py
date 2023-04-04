@@ -26,3 +26,4 @@ class comentarioBlog(models.Model):
 
     def __str__(self):
         return f"FechaComentarioBlog{self.fechaComentarioBlog}, TextComentarioBlog{self.textComentarioBlog}"
+
