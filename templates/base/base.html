@@ -21,10 +21,9 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'Home' %}">INICIO</a>
-
-
+                <a class="navbar-brand" href="{% url 'blogsAppListarLogs' %}">Nuestros blogs!</a>
                 {% if not request.user.is_authenticated %}
-                <a class="btn btn-primary" href="{% url 'blogsAppLoginUsuario' %}">Sign Up</a>
+                <a class="btn btn-primary" href="{% url 'blogsAppLoginUsuario' %}">Inicio de sesión</a>
                 <a class="btn btn-primary" href="{% url 'blogsAppRegistroUsuarios' %}">Registro</a>
                 {% else %}
                 <a class="navbar-brand" href="{% url 'blogsAppCrearBlogs' %}">Crear un Blog</a>

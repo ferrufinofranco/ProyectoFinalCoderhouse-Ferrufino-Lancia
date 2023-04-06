@@ -1,19 +1,18 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-{% block contenidoBody %}
+{% block contenidoNavBar %}
     {% if blogs %}
     {% for blog in blogs %}
         <h3>{{ blog.titulo }}</h3>
         <p>Autor: {{ blog.autor }}</p>
-        {% if user.is_authenticated and user == publicacion.autor or user.is_staff %}
-        <!--<a class="btn btn-warning" href="{% url 'editar_publicacion' publicacion.pk %}">Editar</a>-->
-        <a class="btn btn-danger" href="{% url 'borrar_publicacion' publicacion.pk %}">Borrar</a>
+        {% if user.is_authenticated and user == blog.autor or user.is_staff %}
+        <a href="{% url 'blogsAppEditarBlog' pk=blog.id %}">Editar</a>
+        <a href="{% url 'blogsAppEliminarBlog' pk=blog.id %}">Borrar</a>
         {% endif %}
-        <a class="btn btn-primary" href="{% url 'detalle_publicacion' publicacion.pk %}">Leer más</a>
+        <a class="btn btn-primary" href="{% url 'blogsAppDetalleBlog' blog.pk %}">Leer más</a>
         {% endfor %}
     {% else %}
     <h2 style="color: #ff0000;">No existen publicaciones</h2>
-    <b style="color: #00ccff;">Puedes crear una publicacion desde el boton 'Publicar'</b>
     {% endif %}
 {% endblock %}

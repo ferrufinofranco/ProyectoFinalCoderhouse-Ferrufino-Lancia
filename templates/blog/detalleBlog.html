@@ -1,1 +1,38 @@
-<!--a completar-->
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block contenidoNavBar %}
+  <h1>{{ blog.titulo }}</h1>
+  <h5>{{ blog.subtitulo }}</h5>
+  <p>Publicado: {{ blog.fechaBlog }}</p>
+  <p>Autor: {{ blog.autor.username }}</p>
+  <img src="{{ blog.imagen.url }}">
+  <p>{{ blog.contenido }}</p>
+
+  {% if user.is_authenticated and user == blog.autor or user.is_staff %}
+    <a href="{% url 'blogsAppEditarBlog' pk=blog.id %}">Editar</a>
+    <a href="{% url 'blogsAppEliminarBlog' pk=blog.id %}">Borrar</a>
+  {% endif %}
+
+  <h1>Comentarios</h1>
+  {% if comentarios %}
+    <ul>
+      {% for comentario in comentarios %}
+        <li>
+          <strong>{{ comentario.autor.username }}</strong>
+          <p>{{ comentario.comentario }}</p>
+          <small>{{ comentario.fechaComentario }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay comentarios todavía.</p>
+  {% endif %}
+
+  <h2>Agregar Comentario</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+{% endblock %}

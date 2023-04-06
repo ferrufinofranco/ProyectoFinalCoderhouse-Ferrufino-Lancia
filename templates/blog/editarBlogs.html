@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block contenidoNavBar %}
+
+    <h1>Editar Publicación</h1>
+    <form method="post" action="{% url 'blogsAppEditarBlog' pk=blog.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+{% endblock %}

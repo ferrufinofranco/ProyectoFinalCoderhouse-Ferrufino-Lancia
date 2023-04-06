@@ -13,5 +13,7 @@ urlpatterns = [
     path('registroBlogs/', crear_blog, name='blogsAppCrearBlogs'),
     path('busquedaBlogs/', buscar_blogs, name='blogsAppBuscarBlogs'),
     path('eliminarBlog/<int:pk>/', eliminarBlog, name='blogsAppEliminarBlog'),
-    path('blog/<int:pk>/', detalle_blog, name='blogsAppDetalleBlog')
+    path('editarBlog/<int:pk>/',editar_blog, name='blogsAppEditarBlog'),
+    path('blog/<int:pk>/', detalle_blog, name='blogsAppDetalleBlog'),
+    path('blogsExistentes/', listar_blogs, name='blogsAppListarLogs')
 ]

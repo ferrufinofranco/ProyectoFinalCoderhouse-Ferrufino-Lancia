@@ -1,11 +1,11 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from blogsApp.models import Blog
+from blogsApp.models import Blog, Comentario
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['titulo', 'contenido', 'imagen']
+        fields = ['titulo', 'subtitulo', 'contenido', 'imagen']
 
 class UsuariosForm(forms.Form):
     username = forms.CharField(min_length=3, max_length=40)
@@ -17,3 +17,8 @@ class UsuariosForm(forms.Form):
 
 class BusquedaBlogForm(forms.Form):
     titulo = forms.CharField(max_length=40)
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['contenido']

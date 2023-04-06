@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from blogsApp.models import *
-from blogsApp.forms import BlogForm, UsuariosForm, BusquedaBlogForm
+from blogsApp.forms import BlogForm, UsuariosForm, BusquedaBlogForm, ComentarioForm
 from django.contrib import messages
 from django.http import HttpResponse
 
@@ -36,7 +36,7 @@ def buscar_blogs(request):
 
 def listar_blogs(request):
     blogs = Blog.objects.all()
-    return render(request, 'listarBlogs.html', {'blogs': blogs})
+    return render(request, 'blog/listarBlogs.html', {'blogs': blogs})
 
 def detalle_blog(request, pk):
     blog = Blog.objects.get(pk=pk)
@@ -80,5 +80,38 @@ def eliminarBlog(request, pk):
     get_blog.delete()
     return redirect('Home')
 
-def editarBlog(request):
-    pass
+def editar_blog(request, pk):
+    blog = get_object_or_404(Blog, pk=pk)
+    if request.method == 'POST':
+        form = BlogForm(request.POST, request.FILES, instance=blog)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.autor = request.user
+            blog.save()
+            blogs = Blog.objects.all()
+            return render(request, 'blog/listarBlogs.html', {'blogs': blogs})
+    else:
+        form = BlogForm(instance=blog)
+    return render(request, 'blog/editarBlogs.html', {'form': form, 'blog': blog})
+
+def ver_comentarios(request, pk):
+    blog = get_object_or_404(Blog, pk=pk)
+    comentarios = Comentario.objects.filter(blog=blog)
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.autor = request.user
+            comentario.blog = blog
+            comentario.save()
+            return redirect('ver_comentarios', pk=pk)
+    else:
+        form = ComentarioForm()
+
+    context = {
+        'blog': blog,
+        'comentarios': comentarios,
+        'form': form
+    }
+    return render(request, 'blogsApp/ver_comentarios.html', context=context)
