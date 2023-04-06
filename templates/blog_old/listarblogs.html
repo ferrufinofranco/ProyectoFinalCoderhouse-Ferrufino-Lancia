@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block contenidoBody %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Publicar</button>
+    </form>
+
+    {% if blogs %}
+        {% for blog in blogs %}
+            <h3>{{ blog.titulo }}</h3>
+            <p>Autor: {{ blog.autor }}</p>
+
+            {% if user.is_authenticated and user == blog.autor or user.is_staff %}
+                <a class="btn btn-warning" href="{% url 'editar_blog' blog.pk %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'borrar_blog' blog.pk %}">Borrar</a>
+            {% endif %}
+            <a class="btn btn-primary" href="{% url 'detalle_blog' blog.pk %}">Leer más</a>
+        {% endfor %}
+    {% else %}
+        <h2 style="color: #ff0000;">No existen publicaciones</h2>
+        <b style="color: #00ccff;">Puedes crear una publicacion desde el formulario de arriba</b>
+    {% endif %}
+{% endblock %}

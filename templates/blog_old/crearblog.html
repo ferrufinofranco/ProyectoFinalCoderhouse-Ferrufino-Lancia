@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+
+{% block contenidoBody %}
+    <form method="post" enctype="multipart/form-data" action="{% url 'create_blogs' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Crear Publicación</button>
+    </form>
+{% endblock %}

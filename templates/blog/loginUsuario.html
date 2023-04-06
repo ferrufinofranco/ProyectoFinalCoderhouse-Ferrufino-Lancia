@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block contenidoNavBar %}
+<h2>Iniciar sesión</h2>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+</form>
+{% endblock %}

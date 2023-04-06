@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+
+{% block contenidoNavBar %}
+    <form action="{% url 'blogsAppRegistroUsuarios' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Completar registro!</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

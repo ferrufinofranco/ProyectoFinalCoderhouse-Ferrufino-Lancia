@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+
+{% block contenidoNavBar %}
+    <form action="{% url 'blogsAppBuscarBlogs' %}" method="GET">
+        {{ form_busqueda.as_p }}
+        <input type="submit" value="Buscar Curso">
+    </form>
+    {% if blogs %}
+        <h3>Los blogs encontrados son:</h3>.<br>
+
+        {% for blog in blogs %}
+        <h3>Titulo: {{ blog.titulo }}</h3>
+        Contenido: {{ blog.contenido|slice:":27" }}...<a href="{% url 'blogsAppDetalleBlog' pk=blog.id %}">Leer más...</a>
+
+        {% endfor %}
+    {% elif blogs is None %}
+        <h3>Ingrese una búsqueda para ver los cursos disponibles</h3>
+    {% else %}
+        <h3>No se encontraron cursos para la búsqueda </h3>
+    {% endif %}
+{% endblock %}
