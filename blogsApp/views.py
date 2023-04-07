@@ -11,6 +11,9 @@ from django.db import IntegrityError, transaction
 # Create your views here.
 def home(request):
     return render(request, "base/base.html")
+
+def about(request):
+    return render(request, "base/about.html")
 def crear_blog(request):
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
