@@ -3,7 +3,7 @@
 {% block contenidoNavBar %}
     <form action="{% url 'blogsAppBuscarBlogs' %}" method="GET">
         {{ form_busqueda.as_p }}
-        <input type="submit" value="Buscar Curso">
+        <input type="submit" value="Buscar Blog">
     </form>
     {% if blogs %}
         <h3>Los blogs encontrados son:</h3>.<br>
