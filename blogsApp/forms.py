@@ -12,8 +12,8 @@ class UsuariosForm(forms.Form):
     nombre = forms.CharField(min_length=3, max_length=40)
     apellido = forms.CharField(min_length=3, max_length=40)
     email = forms.EmailField()
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repetir contraseña', widget=forms.PasswordInput)
+    password1 = forms.CharField(min_length=8, label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(min_length=8, label='Repetir contraseña', widget=forms.PasswordInput)
 
 class BusquedaBlogForm(forms.Form):
     titulo = forms.CharField(max_length=40)
