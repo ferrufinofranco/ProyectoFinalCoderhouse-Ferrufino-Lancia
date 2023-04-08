@@ -7,7 +7,7 @@
   <h5>{{ blog.subtitulo }}</h5>
   <p>Publicado: {{ blog.fechaBlog }}</p>
   <p>Autor: {{ blog.autor.username }}</p>
-  <img src="{% static 'blogs-imagenes/' %}{{ blog.imagen }}">
+  <img src="{{ blog.imagen.url }}" alt="{{ blog.pk }}" width="800" height="600">
   <p>{{ blog.contenido }}</p>
 
   {% if user.is_authenticated and user == blog.autor or user.is_staff %}
