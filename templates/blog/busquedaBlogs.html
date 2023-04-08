@@ -10,12 +10,12 @@
 
         {% for blog in blogs %}
         <h3>Titulo: {{ blog.titulo }}</h3>
-        Contenido: {{ blog.contenido|slice:":27" }}...<a href="{% url 'blogsAppDetalleBlog' pk=blog.id %}">Leer más...</a>
+        Contenido: {{ blog.contenido|slice:":21" }}...<a href="{% url 'blogsAppDetalleBlog' pk=blog.id %}">Leer más...</a>
 
         {% endfor %}
     {% elif blogs is None %}
-        <h3>Ingrese una búsqueda para ver los cursos disponibles</h3>
+        <h3>Ingrese una búsqueda para ver los blogs disponibles</h3>
     {% else %}
-        <h3>No se encontraron cursos para la búsqueda </h3>
+        <h3>No se encontraron blogs para la búsqueda </h3>
     {% endif %}
 {% endblock %}
