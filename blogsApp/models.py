@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 class Blog(models.Model):
     titulo = models.CharField(max_length=40)
     subtitulo = models.CharField(max_length=40)
     contenido = models.TextField()
-    imagen = models.ImageField(upload_to='static/blogs-imagenes')
+    imagen = models.ImageField(upload_to='blogsApp/static/blogs-imagenes')
     fechaBlog = models.DateTimeField(auto_now_add=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
 
