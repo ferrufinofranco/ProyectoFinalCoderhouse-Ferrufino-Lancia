@@ -1,10 +1,10 @@
 {% extends "base/base.html" %}
 
 {% block contenidoNavBar %}
-    <form action="{% url 'blogsAppCrearBlogs' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'blogsAppRegistroUsuarios' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Registrar blog">
+        <button type="submit">Completar registro!</button>
     </form>
     {% if messages %}
         {% for message in messages %}
