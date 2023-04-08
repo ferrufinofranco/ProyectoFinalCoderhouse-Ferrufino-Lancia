@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from blogsApp.models import *
 from blogsApp.forms import BlogForm, UsuariosForm, BusquedaBlogForm, ComentarioForm
@@ -21,6 +21,8 @@ def crear_blog(request):
             blog = form.save(commit=False)
             blog.autor = request.user
             blog.save()
+            messages.success(request, '¡Blog creado con exito!')
+            return redirect('blogsAppCrearBlogs')
     else:
         form = BlogForm()
     return render(request, "blog/registroBlogs.html", {'form': form})
@@ -118,11 +120,9 @@ def editar_blog(request, pk):
         form = BlogForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             blog = form.save(commit=False)
-            blog.autor = request.user
             blog.save()
             blogs = Blog.objects.all()
             return render(request, 'blog/listarBlogs.html', {'blogs': blogs})
     else:
         form = BlogForm(instance=blog)
     return render(request, 'blog/editarBlogs.html', {'form': form, 'blog': blog})
-
