@@ -20,7 +20,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'Home' %}">INICIO</a>
+                <a class="navbar-brand" href="{% url 'Home' %}">Inicio</a>
                 <a class="navbar-brand" href="{% url 'About' %}">Acerca de Nosotros</a>
                 <a class="navbar-brand" href="{% url 'blogsAppListarLogs' %}">Nuestros blogs!</a>
                 {% if not request.user.is_authenticated %}
