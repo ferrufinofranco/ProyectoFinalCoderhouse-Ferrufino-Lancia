@@ -21,9 +21,4 @@ Al momento de comenzar:
 
 Para realizar el trabajo, lo fuimos haciendo en conjunto, diviendo algunos archivos, compartiendonos las importaciones, respetando los nombres e ibamos probando a medida que realizabamos cada uno de los cambios.
 
-Tareas pendientes que esperamos solucionar y commitear luego de la fecha limite de entraga:
-- No podemos lograr que se visualizen las imagenes que subimos al realizar posteos.
-- Quisimos realizar el video en conjunto, pero por una cuestion de tiempos, y que cada uno tiene sus propias actividades, no pudimos hacerlo. La idea siempre fue hacerlo
-en conjunto. Esperamos mañana viernes 7/4 realizar y subir el video.
-
 Se adjunta video de testing de la App: https://youtu.be/7gLhepANTe0
